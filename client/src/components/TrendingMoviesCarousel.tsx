@@ -1,13 +1,22 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { Dimensions, Text, View } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import { MovieCard } from './MovieCard'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack/lib/typescript/src/types'
+import { PlaceDetailsRouteProps, RootStackParamList } from '@/types/navigation'
 
 interface TrendingMoviesCarouselProps {
   data: number[]
 }
+const width = Dimensions.get('window').width;
+
 export const TrendingMoviesCarousel: FC<TrendingMoviesCarouselProps> = ({ data }) => {
-  const width = Dimensions.get('window').width;
+  const { navigate } = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
+  const handleClick = useCallback((item: number) => {
+    navigate('MovieScreen', { id: item })
+  }, [navigate])
 
   return (
     <View className='mb-8 w-full items-center'>
@@ -17,7 +26,7 @@ export const TrendingMoviesCarousel: FC<TrendingMoviesCarouselProps> = ({ data }
         style={{
           width: width,
         }}
-        renderItem={({ item }) => <MovieCard movie={item} />}
+        renderItem={({ item }) => <MovieCard movie={item} onClick={handleClick} />}
         autoPlayInterval={3000}
         mode="parallax"
         modeConfig={{

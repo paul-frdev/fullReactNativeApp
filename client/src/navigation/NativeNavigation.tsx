@@ -1,16 +1,25 @@
 import { HomeScreen } from "@/screens/HomeScreen";
+import { MovieScreen } from '@/screens/MovieScreen';
+import { RootStackParamList } from '@/types/navigation';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const Navigation = () => {
+export const NativeNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="HomeScreen"
           component={HomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MovieScreen"
+          component={MovieScreen}
           options={{
             headerShown: false,
           }}

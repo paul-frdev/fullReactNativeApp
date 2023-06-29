@@ -1,10 +1,8 @@
-import { HomeScreen } from '@/screens/HomeScreen';
+import { NativeNavigation } from '@/navigation/NativeNavigation';
 
 export default function App() {
   return (
-    <>
-      <HomeScreen />
-    </>
+    <NativeNavigation />
   );
 }
 
