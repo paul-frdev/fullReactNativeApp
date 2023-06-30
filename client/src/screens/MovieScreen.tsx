@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Colors } from '@/constants/colors'
 import { PlaceDetailsRouteProps, RootStackParamList } from '@/types/navigation'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { Dimensions, Image, Platform } from 'react-native'
+import { Dimensions, Image, Platform, Text } from 'react-native'
 import { SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native'
 import { ChevronLeftIcon } from 'react-native-heroicons/outline'
 import { HeartIcon } from "react-native-heroicons/solid"
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import clsx from 'clsx'
-import LinearGradient from 'react-native-linear-gradient'
+import { LinearGradient } from 'expo-linear-gradient'
+import { Cast } from '@/components/Cast'
+import { MovieList } from '@/components/MovieList'
 
 
 
@@ -21,6 +23,8 @@ export const MovieScreen = () => {
   const { goBack } = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   const [isFavorite, setIsFavorite] = useState(false)
+  const [cast, setCast] = useState(['one', 'two', 'three'])
+  const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5])
 
   useEffect(() => {
 
@@ -45,7 +49,7 @@ export const MovieScreen = () => {
         <View>
           <Image source={require('../assets/moviePoster2.png')} style={{ width, height: height * 0.55 }} />
           <LinearGradient
-            colors={['#4c669f', '#3b5998', '#192f6a']}
+            colors={['transparent', 'rgba(23, 23, 23, 0.8)', 'rgba(23, 23, 23, 1)']}
             style={{ width, height: height * 0.22 }}
             start={{ x: 0.5, y: 0 }}
             end={{ x: 0.5, y: 1 }}
@@ -53,6 +57,37 @@ export const MovieScreen = () => {
           />
         </View>
       </View>
+
+      {/* movie details */}
+      <View style={{ marginTop: -height * 0.09 }} className='space-y-3'>
+        <Text className='text-white text-center text-3xl font-bold tracking-wider'>
+          Ant-Man and the Wasp
+        </Text>
+        <Text className='text-neutral-400 font-semibold text-base text-center'>
+          Released - 2020 - 170 min
+        </Text>
+      </View>
+      {/* genres */}
+      <View className='flex-row justify-center mx-4 space-x-2'>
+        <Text className='text-base text-neutral-400 font-semibold text-center'>
+          Acton
+        </Text>
+        <Text className='text-base text-neutral-400 font-semibold text-center'>
+          Thrill
+        </Text>
+        <Text className='text-base text-neutral-400 font-semibold text-center'>
+          Comedy
+        </Text>
+      </View>
+      {/* description */}
+      <Text className='text-neutral-400 tracking-wide mx-4'>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque magni deleniti facere officiis voluptatum voluptas sunt corporis iste commodi numquam similique, minima eveniet excepturi doloremque aut reiciendis nihil eius odit!
+      </Text>
+
+      {/* cast */}
+      <Cast authors={cast} />
+      {/* similar movies */}
+      <MovieList title='Similar Movies' data={similarMovies} seeAllShow={false} />
     </ScrollView>
   )
 }
