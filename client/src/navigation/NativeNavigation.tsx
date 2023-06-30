@@ -1,6 +1,7 @@
 import { HomeScreen } from "@/screens/HomeScreen";
 import { MovieScreen } from '@/screens/MovieScreen';
 import { PersonScreen } from '@/screens/PersonScreen';
+import { SearchScreen } from '@/screens/SearchScreen';
 import { RootStackParamList } from '@/types/navigation';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -28,6 +29,13 @@ export const NativeNavigation = () => {
          <Stack.Screen
           name="PersonScreen"
           component={PersonScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SearchScreen"
+          component={SearchScreen}
           options={{
             headerShown: false,
           }}

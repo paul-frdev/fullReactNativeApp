@@ -1,3 +1,4 @@
+import { Loading } from '@/components/Loading';
 import { MovieList } from '@/components/MovieList';
 import { SearchBar } from '@/components/SearchBar';
 import { TrendingMoviesCarousel } from '@/components/TrendingMoviesCarousel';
@@ -12,19 +13,27 @@ export const HomeScreen = () => {
   const [trendingMovies, setTrendingMovies] = useState([1, 2, 3, 4])
   const [upcomingMovies, setUpcomingMovies] = useState([1, 2, 3, 4])
   const [topRated, setTopRated] = useState([1, 2, 3, 4])
+  const [loading, setLoading] = useState(false)
 
   return (
     <View className="flex-1 bg-neutral-800">
-      {/* search bar and logo */}
-      <SearchBar />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Trending movies carousel */}
-        <TrendingMoviesCarousel data={trendingMovies} />
-        {/* upcoming movies */}
-        <MovieList title='Upcoming' data={upcomingMovies} />
-          {/* top rated movies */}
-        <MovieList title='Top Rated' data={topRated} />
-      </ScrollView>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          {/* search bar and logo */}
+          <SearchBar />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {/* Trending movies carousel */}
+            <TrendingMoviesCarousel data={trendingMovies} />
+            {/* upcoming movies */}
+            <MovieList title='Upcoming' data={upcomingMovies} />
+            {/* top rated movies */}
+            <MovieList title='Top Rated' data={topRated} />
+          </ScrollView>
+        </>
+      )
+      }
     </View>
   )
 }
