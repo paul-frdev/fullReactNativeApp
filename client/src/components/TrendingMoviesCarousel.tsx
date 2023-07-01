@@ -1,13 +1,14 @@
-import React, { FC, useCallback, useEffect } from 'react'
+import React, { FC, useCallback } from 'react'
 import { Dimensions, Text, View } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import { MovieCard } from './MovieCard'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack/lib/typescript/src/types'
-import { PlaceDetailsRouteProps, RootStackParamList } from '@/types/navigation'
+import { RootStackParamList } from '@/types/navigation'
+import { Loading } from './Loading'
 
 interface TrendingMoviesCarouselProps {
-  data: number[]
+  data?: any
 }
 const width = Dimensions.get('window').width;
 

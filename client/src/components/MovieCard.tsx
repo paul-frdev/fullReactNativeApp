@@ -4,7 +4,7 @@ import { View } from 'react-native-animatable';
 
 
 interface MovieCardProps {
-  movie: number;
+  movie: any;
   onClick: (item: any) => void;
 }
 export const MovieCard: FC<MovieCardProps> = ({ movie, onClick }) => {
