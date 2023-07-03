@@ -11,6 +11,7 @@ import clsx from 'clsx'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Cast } from '@/components/Cast'
 import { MovieList } from '@/components/MovieList'
+import useGetMovies from '@/hooks/useGetMovies'
 
 
 
@@ -21,13 +22,20 @@ const platformIOS = Platform.OS === 'ios';
 export const MovieScreen = () => {
   const { params } = useRoute<PlaceDetailsRouteProps>()
   const { goBack } = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+  const { getMovieById, movieById } = useGetMovies()
 
   const [isFavorite, setIsFavorite] = useState(false)
   const [cast, setCast] = useState(['one', 'two', 'three'])
   const [similarMovies, setSimilarMovies] = useState([1, 2, 3, 4, 5])
 
-  useEffect(() => {
 
+  console.log('params.id', params.id);
+  console.log('movieById', movieById);
+
+
+
+  useEffect(() => {
+    getMovieById(+params.id)
   }, [params?.id])
 
 

@@ -8,11 +8,34 @@ async function trendingMovies() {
     `${BASE_URL}/trending/movie/day?api_key=${process.env.API_KEY}`
   );
 
-  return response.data
+  return response.data;
 }
 
-// async function loadTrendingMovies() {
-//  return await trendingMovies();
-// }
+async function getUpcomingMovies() {
+  // @ts-ignore
+  const response = await axios.get(
+    `${BASE_URL}/movie/upcoming?api_key=${process.env.API_KEY}`
+  );
 
-module.exports = { trendingMovies };
+  return response.data;
+}
+
+async function getTopRatedMovies() {
+  // @ts-ignore
+  const response = await axios.get(
+    `${BASE_URL}/movie/top_rated?api_key=${process.env.API_KEY}`
+  );
+
+  return response.data;
+}
+
+async function getMovieDetails(id: number) {
+  // @ts-ignore
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}?api_key=${process.env.API_KEY}`
+  );
+
+  return response.data;
+}
+
+export = { trendingMovies, getUpcomingMovies, getTopRatedMovies, getMovieDetails };

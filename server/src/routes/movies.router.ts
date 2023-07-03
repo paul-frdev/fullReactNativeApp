@@ -1,9 +1,25 @@
-import { httpTrendingMovies } from './movies.controller';
-const express = require('express');
+const {
+  httpTrendingMovies,
+  httpUpcomingMovies,
+  httpTopRatedMovies,
+  httpMovieDetails,
+} = require('./movies.controller');
+const expressRoute = require('express');
 
-const trendingMovies = express.Router();
+const trending = expressRoute.Router();
+const upcoming = expressRoute.Router();
+const topRated = expressRoute.Router();
+const movieById = expressRoute.Router();
 
-trendingMovies.get('/trending', httpTrendingMovies);
+trending.get('/trending', httpTrendingMovies);
 
-module.exports = trendingMovies;
+upcoming.get('/upcoming', httpUpcomingMovies);
+topRated.get('/top-rated', httpTopRatedMovies);
+movieById.get('/movie/:id', httpMovieDetails);
 
+export = {
+  trending,
+  upcoming,
+  topRated,
+  movieById,
+};
